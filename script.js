@@ -6,6 +6,12 @@ const confirmBtn = document.querySelector("#confirm");
 const player1Input = document.querySelector("#player1");
 const player2Input = document.querySelector("#player2");
 
+const player1Display = document.querySelector(".player1-display");
+const player2Display = document.querySelector(".player2-display");
+
+const player1NameDisplay = document.querySelector(".player1-name-display");
+const player2NameDisplay = document.querySelector(".player2-name-display");
+
 let player1;
 let player2;
 
@@ -17,6 +23,9 @@ confirmBtn.addEventListener("click", (event) => {
 
 	player1 = createPlayer(`${player1Name}`, "O");
 	player2 = createPlayer(`${player2Name}`, "X");
+
+	player1NameDisplay.textContent = `${player1.playerName} O`;
+	player2NameDisplay.textContent = `${player2.playerName} X`;
 
 	dialog.close();
 	playGame(player1, player2);
@@ -61,13 +70,15 @@ function createPlayer(name, token) {
 
 newGame.addEventListener("click", () => {
 	playGame(player1, player2);
+	player1Display.classList.add("currentPlayer");
+	player2Display.classList.remove("currentPlayer");
 	result.textContent = "";
 });
 
 function playGame(player1, player2) {
 	const board = gameboard();
 
-	const currentPlayerDiv = document.querySelector("#current-player");
+	// const currentPlayerDiv = document.querySelector("#current-player");
 
 	const tie = (item) => item !== "";
 
@@ -75,13 +86,15 @@ function playGame(player1, player2) {
 
 	const switchTurn = () => {
 		activePlayer = activePlayer === player1 ? player2 : player1;
+		player1Display.classList.toggle("currentPlayer");
+		player2Display.classList.toggle("currentPlayer");
 	};
 
-	const newBoard = () => {
-		console.log(board.getBoard);
-		console.log(`Tour de ${activePlayer.playerName}`);
-		currentPlayerDiv.textContent = `Tour de ${activePlayer.playerName}, ${activePlayer.playerToken}`;
-	};
+	// const newBoard = () => {
+	// 	console.log(board.getBoard);
+	// 	console.log(`Tour de ${activePlayer.playerName}`);
+	// 	// currentPlayerDiv.textContent = `Tour de ${activePlayer.playerName}, ${activePlayer.playerToken}`;
+	// };
 
 	const WinOrTie = () => {
 		const cells = document.querySelectorAll(".cell");
@@ -122,7 +135,7 @@ function playGame(player1, player2) {
 		board.addToken(index, activePlayer);
 		WinOrTie();
 		switchTurn();
-		newBoard();
+		// newBoard();
 	};
 
 	function updateBoard(board) {
@@ -138,7 +151,7 @@ function playGame(player1, player2) {
 		});
 	}
 
-	newBoard();
+	// newBoard();
 	displayBoard(board.getBoard);
 	updateBoard(board.getBoard);
 
