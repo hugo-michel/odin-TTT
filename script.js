@@ -36,9 +36,11 @@ function createPlayer(name, token) {
 }
 
 function playGame() {
-	const player1 = createPlayer("Player1", "O");
+	const player1 = createPlayer("Player 1", "O");
 	const player2 = createPlayer("Player 2", "X");
 	const board = gameboard();
+
+    const currentPlayerDiv = document.querySelector("#current-player");
 
 	const tie = (item) => item !== "";
 
@@ -51,6 +53,8 @@ function playGame() {
 	const newBoard = () => {
 		console.log(board.getBoard);
 		console.log(`Tour de ${activePlayer.playerName}`);
+        currentPlayerDiv.textContent = `Tour de ${activePlayer.playerName}, ${activePlayer.playerToken}`
+
 	};
 
 	const WinOrTie = () => {
@@ -92,6 +96,7 @@ function playGame() {
 				playRound(index);
 				cell.textContent = board[index];
                 cell.style.pointerEvents = "none";
+                currentPlayerDiv.textContent = `Tour de ${activePlayer.playerName}, ${activePlayer.playerToken}`
 			});
 		});
 	}
