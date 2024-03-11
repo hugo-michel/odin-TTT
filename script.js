@@ -1,3 +1,6 @@
+const newGame = document.querySelector("#new-game");
+const result = document.querySelector("#result");
+
 function gameboard() {
 	let board = [];
 	for (i = 0; i < 9; i++) {
@@ -15,9 +18,9 @@ function gameboard() {
 function displayBoard(boardArray) {
 	const container = document.querySelector("#container");
 
-	// while (container.firstChild) {
-	//     container.removeChild(container.firstChild)
-	// };
+	while (container.firstChild) {
+		container.removeChild(container.firstChild);
+	}
 
 	let length = boardArray.length;
 
@@ -35,12 +38,17 @@ function createPlayer(name, token) {
 	return { playerName, playerToken };
 }
 
+newGame.addEventListener("click", () => {
+	playGame();
+	result.textContent = "";
+});
+
 function playGame() {
 	const player1 = createPlayer("Player 1", "O");
 	const player2 = createPlayer("Player 2", "X");
 	const board = gameboard();
 
-    const currentPlayerDiv = document.querySelector("#current-player");
+	const currentPlayerDiv = document.querySelector("#current-player");
 
 	const tie = (item) => item !== "";
 
@@ -53,12 +61,10 @@ function playGame() {
 	const newBoard = () => {
 		console.log(board.getBoard);
 		console.log(`Tour de ${activePlayer.playerName}`);
-        currentPlayerDiv.textContent = `Tour de ${activePlayer.playerName}, ${activePlayer.playerToken}`
-
+		currentPlayerDiv.textContent = `Tour de ${activePlayer.playerName}, ${activePlayer.playerToken}`;
 	};
 
 	const WinOrTie = () => {
-        const result = document.querySelector("#result");
 		if (
 			board.getBoard[0] + board.getBoard[1] + board.getBoard[2] === "OOO" ||
 			board.getBoard[0] + board.getBoard[1] + board.getBoard[2] === "XXX" ||
@@ -78,10 +84,10 @@ function playGame() {
 			board.getBoard[2] + board.getBoard[4] + board.getBoard[6] === "XXX"
 		) {
 			console.log(`End of game, the winner is ${activePlayer.playerName}`);
-            result.textContent = `End of game, the winner is ${activePlayer.playerName}`
+			result.textContent = `End of game, the winner is ${activePlayer.playerName}`;
 		} else if (board.getBoard.every(tie)) {
 			console.log("The game is a tie");
-            result.textContent = ("The game is a tie")
+			result.textContent = "The game is a tie";
 		}
 	};
 
@@ -98,8 +104,8 @@ function playGame() {
 			cell.addEventListener("click", () => {
 				playRound(index);
 				cell.textContent = board[index];
-                cell.style.pointerEvents = "none";
-                currentPlayerDiv.textContent = `Tour de ${activePlayer.playerName}, ${activePlayer.playerToken}`
+				cell.style.pointerEvents = "none";
+				currentPlayerDiv.textContent = `Tour de ${activePlayer.playerName}, ${activePlayer.playerToken}`;
 			});
 		});
 	}
