@@ -12,6 +12,23 @@ function gameboard() {
 	return { getBoard, addToken };
 }
 
+function displayBoard(boardArray) {
+    const container = document.querySelector("#container");
+
+    while (container.firstChild) {
+        container.removeChild(container.firstChild)
+    };
+
+    let length = boardArray.length;
+
+    for (i = 0; i < length; i++) {
+       let div = document.createElement("div");
+       div.classList.add("cell")
+       div.textContent = boardArray[i];
+       container.append(div);
+    }
+}
+
 function createPlayer(name, token) {
 	const playerName = name;
 	const playerToken = token;
@@ -64,6 +81,7 @@ function playGame() {
 
 	const playRound = (index) => {
 		board.addToken(index, activePlayer);
+        displayBoard(board.getBoard)
 
 		WinOrTie();
 
@@ -72,6 +90,7 @@ function playGame() {
 	};
 
 	newBoard();
+    displayBoard(board.getBoard);
 
 	return { player1, player2, board, switchTurn, playRound, activePlayer };
 }
