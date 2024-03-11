@@ -13,20 +13,19 @@ function gameboard() {
 }
 
 function displayBoard(boardArray) {
-    const container = document.querySelector("#container");
+	const container = document.querySelector("#container");
 
-    while (container.firstChild) {
-        container.removeChild(container.firstChild)
-    };
+	// while (container.firstChild) {
+	//     container.removeChild(container.firstChild)
+	// };
 
-    let length = boardArray.length;
+	let length = boardArray.length;
 
-    for (i = 0; i < length; i++) {
-       let div = document.createElement("div");
-       div.classList.add("cell")
-       div.textContent = boardArray[i];
-       container.append(div);
-    }
+	for (i = 0; i < length; i++) {
+		let div = document.createElement("div");
+		div.classList.add("cell");
+		container.append(div);
+	}
 }
 
 function createPlayer(name, token) {
@@ -81,18 +80,27 @@ function playGame() {
 
 	const playRound = (index) => {
 		board.addToken(index, activePlayer);
-        displayBoard(board.getBoard)
-
 		WinOrTie();
-
 		switchTurn();
 		newBoard();
 	};
 
+	function updateBoard(board) {
+		const cells = document.querySelectorAll(".cell");
+		cells.forEach((cell, index) => {
+			cell.addEventListener("click", () => {
+				playRound(index);
+				cell.textContent = board[index];
+                cell.style.pointerEvents = "none";
+			});
+		});
+	}
+
 	newBoard();
-    displayBoard(board.getBoard);
+	displayBoard(board.getBoard);
+	updateBoard(board.getBoard);
 
 	return { player1, player2, board, switchTurn, playRound, activePlayer };
 }
 
-let game = playGame();
+playGame();
