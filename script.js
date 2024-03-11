@@ -12,6 +12,9 @@ const player2Display = document.querySelector(".player2-display");
 const player1NameDisplay = document.querySelector(".player1-name-display");
 const player2NameDisplay = document.querySelector(".player2-name-display");
 
+const player1ScoreDisplay = document.querySelector(".player1-score-display");
+const player2ScoreDisplay = document.querySelector(".player2-score-display");
+
 let player1;
 let player2;
 
@@ -64,8 +67,12 @@ function displayBoard(boardArray) {
 function createPlayer(name, token) {
 	const playerName = name;
 	const playerToken = token;
+	let score = 0;
 
-	return { playerName, playerToken };
+	const getScore = () => score;
+	const addScore = () => score++;
+
+	return { playerName, playerToken, getScore, addScore };
 }
 
 newGame.addEventListener("click", () => {
@@ -78,8 +85,6 @@ newGame.addEventListener("click", () => {
 function playGame(player1, player2) {
 	const board = gameboard();
 
-	// const currentPlayerDiv = document.querySelector("#current-player");
-
 	const tie = (item) => item !== "";
 
 	let activePlayer = player1;
@@ -89,12 +94,6 @@ function playGame(player1, player2) {
 		player1Display.classList.toggle("currentPlayer");
 		player2Display.classList.toggle("currentPlayer");
 	};
-
-	// const newBoard = () => {
-	// 	console.log(board.getBoard);
-	// 	console.log(`Tour de ${activePlayer.playerName}`);
-	// 	// currentPlayerDiv.textContent = `Tour de ${activePlayer.playerName}, ${activePlayer.playerToken}`;
-	// };
 
 	const WinOrTie = () => {
 		const cells = document.querySelectorAll(".cell");
@@ -119,6 +118,12 @@ function playGame(player1, player2) {
 		) {
 			console.log(`End of game, the winner is ${activePlayer.playerName}`);
 			result.textContent = `End of game, the winner is ${activePlayer.playerName}`;
+			activePlayer.addScore();
+			if (activePlayer === player1) {
+				player1ScoreDisplay.textContent = `Score : ${player1.getScore()}`;
+			} else if (activePlayer === player2) {
+				player2ScoreDisplay.textContent = `Score : ${player2.getScore()}`;
+			}
 			cells.forEach((cell) => {
 				cell.style.pointerEvents = "none";
 			});
@@ -135,7 +140,6 @@ function playGame(player1, player2) {
 		board.addToken(index, activePlayer);
 		WinOrTie();
 		switchTurn();
-		// newBoard();
 	};
 
 	function updateBoard(board) {
@@ -146,12 +150,11 @@ function playGame(player1, player2) {
 				playRound(index);
 				cell.textContent = board[index];
 				cell.style.pointerEvents = "none";
-				currentPlayerDiv.textContent = `Tour de ${activePlayer.playerName}, ${activePlayer.playerToken}`;
+				// currentPlayerDiv.textContent = `Tour de ${activePlayer.playerName}, ${activePlayer.playerToken}`;
 			});
 		});
 	}
 
-	// newBoard();
 	displayBoard(board.getBoard);
 	updateBoard(board.getBoard);
 
