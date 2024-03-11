@@ -54,7 +54,7 @@ function playGame() {
             board.getBoard[2] + board.getBoard[4] + board.getBoard[6] === "OOO" ||
             board.getBoard[2] + board.getBoard[4] + board.getBoard[6] === "XXX"
 		) {
-			console.log("fin de partie");
+			console.log(`End of game, the winner is ${activePlayer.playerName}`);
 		}
 	};
 
