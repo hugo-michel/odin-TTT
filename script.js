@@ -24,7 +24,7 @@ function playGame() {
 	const player2 = createPlayer("Player 2", "X");
 	const board = gameboard();
 
-    const tie = (item) => item !== "";
+	const tie = (item) => item !== "";
 
 	let activePlayer = player1;
 
@@ -47,30 +47,28 @@ function playGame() {
 			board.getBoard[6] + board.getBoard[7] + board.getBoard[8] === "XXX" ||
 			board.getBoard[0] + board.getBoard[3] + board.getBoard[6] === "OOO" ||
 			board.getBoard[0] + board.getBoard[3] + board.getBoard[6] === "XXX" ||
-            board.getBoard[1] + board.getBoard[4] + board.getBoard[7] === "OOO" ||
-            board.getBoard[1] + board.getBoard[4] + board.getBoard[7] === "XXX" ||
-            board.getBoard[2] + board.getBoard[5] + board.getBoard[8] === "OOO" ||
-            board.getBoard[2] + board.getBoard[5] + board.getBoard[8] === "XXX" ||
-            board.getBoard[0] + board.getBoard[4] + board.getBoard[8] === "OOO" ||
-            board.getBoard[0] + board.getBoard[4] + board.getBoard[8] === "XXX" ||
-            board.getBoard[2] + board.getBoard[4] + board.getBoard[6] === "OOO" ||
-            board.getBoard[2] + board.getBoard[4] + board.getBoard[6] === "XXX"
+			board.getBoard[1] + board.getBoard[4] + board.getBoard[7] === "OOO" ||
+			board.getBoard[1] + board.getBoard[4] + board.getBoard[7] === "XXX" ||
+			board.getBoard[2] + board.getBoard[5] + board.getBoard[8] === "OOO" ||
+			board.getBoard[2] + board.getBoard[5] + board.getBoard[8] === "XXX" ||
+			board.getBoard[0] + board.getBoard[4] + board.getBoard[8] === "OOO" ||
+			board.getBoard[0] + board.getBoard[4] + board.getBoard[8] === "XXX" ||
+			board.getBoard[2] + board.getBoard[4] + board.getBoard[6] === "OOO" ||
+			board.getBoard[2] + board.getBoard[4] + board.getBoard[6] === "XXX"
 		) {
 			console.log(`End of game, the winner is ${activePlayer.playerName}`);
 		} else if (board.getBoard.every(tie)) {
-            console.log("The game is a tie");
-        }
+			console.log("The game is a tie");
+		}
 	};
 
 	const playRound = (index) => {
+		board.addToken(index, activePlayer);
 
-            board.addToken(index, activePlayer);
-    
-            WinOrTie();
-    
-            switchTurn();
-            newBoard();
+		WinOrTie();
 
+		switchTurn();
+		newBoard();
 	};
 
 	newBoard();
