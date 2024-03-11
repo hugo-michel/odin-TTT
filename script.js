@@ -24,6 +24,8 @@ function playGame() {
 	const player2 = createPlayer("Player 2", "X");
 	const board = gameboard();
 
+    const tie = (item) => item !== "";
+
 	let activePlayer = player1;
 
 	const switchTurn = () => {
@@ -55,16 +57,20 @@ function playGame() {
             board.getBoard[2] + board.getBoard[4] + board.getBoard[6] === "XXX"
 		) {
 			console.log(`End of game, the winner is ${activePlayer.playerName}`);
-		}
+		} else if (board.getBoard.every(tie)) {
+            console.log("The game is a tie");
+        }
 	};
 
 	const playRound = (index) => {
-		board.addToken(index, activePlayer);
 
-		WinOrTie();
+            board.addToken(index, activePlayer);
+    
+            WinOrTie();
+    
+            switchTurn();
+            newBoard();
 
-		switchTurn();
-		newBoard();
 	};
 
 	newBoard();
