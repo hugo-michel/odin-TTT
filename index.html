@@ -8,35 +8,31 @@
 		<title>Tic-Tac-Toe</title>
 	</head>
 	<body>
-		<div id="players-display">
-			<div class="player1-display currentPlayer">
-				<p class="player1-name-display"></p>
-				<p class="player1-score-display">Score : 0</p>
-			</div>
-
-			<div class="player2-display">
-				<p class="player2-name-display"></p>
-				<p class="player2-score-display">Score : 0</p>
-			</div>
-		</div>
-
-		<dialog class="dialog-restart">
-			<div id="result" class="hide"></div>
-			<button id="new-game">New Game</button>
-		</dialog>
-
-		<div id="container"></div>
-
-		<dialog class="input-name">
-			<form action="">
-				<label for="player1">nom du joueur 1</label>
-				<input type="text" id="player1" name="player1" />
-
-				<label for="player2">nom du joueur 1</label>
-				<input type="text" id="player2" name="player2" />
-
-				<button id="confirm">Confirm</button>
-			</form>
-		</dialog>
+		<div id="main">
+            <div id="players-display">
+                <div class="player1-display currentPlayer">
+                    <p class="player1-name-display"></p>
+                    <p class="player1-score-display">Score : 0</p>
+                </div>
+                <div class="player2-display">
+                    <p class="player2-name-display"></p>
+                    <p class="player2-score-display">Score : 0</p>
+                </div>
+            </div>
+            <dialog class="dialog-restart">
+                <div id="result" class="hide"></div>
+                <button id="new-game">New Game</button>
+            </dialog>
+            <div id="container"></div>
+            <dialog class="input-name">
+                <form action="">
+                    <label for="player1">nom du joueur 1</label>
+                    <input type="text" id="player1" name="player1" />
+                    <label for="player2">nom du joueur 1</label>
+                    <input type="text" id="player2" name="player2" />
+                    <button id="confirm">Confirm</button>
+                </form>
+            </dialog>
+        </div>
 	</body>
 </html>

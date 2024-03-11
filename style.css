@@ -1,16 +1,75 @@
+:root {
+    --border: 1px solid black;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* layout */
+
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* player */
+
+#players-display {
+    width: 50%;
+    display: flex;
+    gap: 20px;
+}
+
+#players-display > div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid red;
+}
+
+/* espace de jeu */
+
 #container {
-	width: 455px;
-	height: 455px;
-	border: 1px solid red;
+	width: 50%;
+    aspect-ratio: 1 / 1;
 	display: flex;
 	flex-wrap: wrap;
 }
 
-.cell {
-	width: 150px;
-	height: 150px;
-	border: 1px solid black;
+#container > :nth-child(2),
+#container > :nth-child(8) {
+    border-left: var(--border);
+    border-right: var(--border);
 }
+
+#container > :nth-child(4),
+#container > :nth-child(6) {
+    border-top: var(--border);
+    border-bottom: var(--border);
+}
+
+
+#container > :nth-child(5) {
+    border: var(--border);
+}
+
+.cell {
+    font-size: 10vw;
+	width: 33%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* css pr js */
 
 .currentPlayer {
     background-color: cyan;
