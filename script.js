@@ -1,10 +1,12 @@
 const newGame = document.querySelector("#new-game");
 const result = document.querySelector("#result");
 
-const dialog = document.querySelector("dialog");
+const dialogName = document.querySelector(".input-name");
 const confirmBtn = document.querySelector("#confirm");
 const player1Input = document.querySelector("#player1");
 const player2Input = document.querySelector("#player2");
+
+const dialogRestart = document.querySelector(".dialog-restart");
 
 const player1Display = document.querySelector(".player1-display");
 const player2Display = document.querySelector(".player2-display");
@@ -30,7 +32,7 @@ confirmBtn.addEventListener("click", (event) => {
 	player1NameDisplay.textContent = `${player1.playerName} O`;
 	player2NameDisplay.textContent = `${player2.playerName} X`;
 
-	dialog.close();
+	dialogName.close();
 	playGame(player1, player2);
 });
 
@@ -80,6 +82,7 @@ newGame.addEventListener("click", () => {
 	player1Display.classList.add("currentPlayer");
 	player2Display.classList.remove("currentPlayer");
 	result.textContent = "";
+	dialogRestart.close();
 });
 
 function playGame(player1, player2) {
@@ -118,6 +121,7 @@ function playGame(player1, player2) {
 		) {
 			console.log(`End of game, the winner is ${activePlayer.playerName}`);
 			result.textContent = `End of game, the winner is ${activePlayer.playerName}`;
+			dialogRestart.showModal();
 			activePlayer.addScore();
 			if (activePlayer === player1) {
 				player1ScoreDisplay.textContent = `Score : ${player1.getScore()}`;
@@ -128,7 +132,7 @@ function playGame(player1, player2) {
 				cell.style.pointerEvents = "none";
 			});
 		} else if (board.getBoard.every(tie)) {
-			console.log("The game is a tie");
+			dialogRestart.showModal();
 			result.textContent = "The game is a tie";
 			cells.forEach((cell) => {
 				cell.style.pointerEvents = "none";
@@ -150,7 +154,6 @@ function playGame(player1, player2) {
 				playRound(index);
 				cell.textContent = board[index];
 				cell.style.pointerEvents = "none";
-				// currentPlayerDiv.textContent = `Tour de ${activePlayer.playerName}, ${activePlayer.playerToken}`;
 			});
 		});
 	}
@@ -161,4 +164,4 @@ function playGame(player1, player2) {
 	return { player1, player2, board, switchTurn, playRound, activePlayer };
 }
 
-dialog.showModal();
+dialogName.showModal();
