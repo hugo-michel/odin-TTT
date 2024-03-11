@@ -58,6 +58,7 @@ function playGame() {
 	};
 
 	const WinOrTie = () => {
+        const result = document.querySelector("#result");
 		if (
 			board.getBoard[0] + board.getBoard[1] + board.getBoard[2] === "OOO" ||
 			board.getBoard[0] + board.getBoard[1] + board.getBoard[2] === "XXX" ||
@@ -77,8 +78,10 @@ function playGame() {
 			board.getBoard[2] + board.getBoard[4] + board.getBoard[6] === "XXX"
 		) {
 			console.log(`End of game, the winner is ${activePlayer.playerName}`);
+            result.textContent = `End of game, the winner is ${activePlayer.playerName}`
 		} else if (board.getBoard.every(tie)) {
 			console.log("The game is a tie");
+            result.textContent = ("The game is a tie")
 		}
 	};
 
