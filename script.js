@@ -20,6 +20,9 @@ const player2ScoreDisplay = document.querySelector(".player2-score-display");
 let player1;
 let player2;
 
+const clr1 = "#E0BC59";
+const clr2 = "#4C8EDF";
+
 confirmBtn.addEventListener("click", (event) => {
 	event.preventDefault();
 
@@ -79,8 +82,8 @@ function createPlayer(name, token) {
 
 newGame.addEventListener("click", () => {
 	playGame(player1, player2);
-	player1Display.classList.add("currentPlayer");
-	player2Display.classList.remove("currentPlayer");
+	player1Display.classList.add("currentPlayer1");
+	player2Display.classList.remove("currentPlayer2");
 	result.textContent = "";
 	dialogRestart.close();
 });
@@ -94,8 +97,8 @@ function playGame(player1, player2) {
 
 	const switchTurn = () => {
 		activePlayer = activePlayer === player1 ? player2 : player1;
-		player1Display.classList.toggle("currentPlayer");
-		player2Display.classList.toggle("currentPlayer");
+		player1Display.classList.toggle("currentPlayer1");
+		player2Display.classList.toggle("currentPlayer2");
 	};
 
 	const WinOrTie = () => {
@@ -154,6 +157,12 @@ function playGame(player1, player2) {
 				playRound(index);
 				cell.textContent = board[index];
 				cell.style.pointerEvents = "none";
+                if (activePlayer === player1) {
+                   cell.style.color = clr1;
+                } else if (activePlayer === player2) {
+                    cell.style.color = clr2;
+
+                }
 			});
 		});
 	}

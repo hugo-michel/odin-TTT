@@ -1,5 +1,7 @@
 :root {
-    --border: 10px solid black;
+    --border: 5px solid black;
+    --clr1: #E0BC59;
+    --clr2: #4C8EDF;
 }
 
 * {
@@ -12,6 +14,7 @@
 
 body {
     height: 100dvh;
+    background-color: #dfdce1;
 }
 
 #main {
@@ -38,9 +41,9 @@ body {
     flex-grow: 1;
     justify-content: center;
     text-align: center;
-    border: 1px solid red;
     padding: 10px 20px;
     gap: 10px;
+    border-radius: 10px;
 }
 
 /* espace de jeu */
@@ -81,6 +84,18 @@ body {
 
 /* css pr js */
 
-.currentPlayer {
-    background-color: cyan;
+.currentPlayer1 {
+    background-color: var(--clr2);
+}
+
+.currentPlayer2 {
+    background-color: var(--clr1);
+}
+
+.clr1 {
+    color: var(--clr2);
+}
+
+.clr2 {
+    color: var(--clr1);
 }
