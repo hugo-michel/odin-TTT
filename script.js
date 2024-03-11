@@ -50,6 +50,8 @@ function playGame() {
 
 	const currentPlayerDiv = document.querySelector("#current-player");
 
+
+
 	const tie = (item) => item !== "";
 
 	let activePlayer = player1;
@@ -65,6 +67,8 @@ function playGame() {
 	};
 
 	const WinOrTie = () => {
+        const cells = document.querySelectorAll(".cell");
+
 		if (
 			board.getBoard[0] + board.getBoard[1] + board.getBoard[2] === "OOO" ||
 			board.getBoard[0] + board.getBoard[1] + board.getBoard[2] === "XXX" ||
@@ -85,9 +89,15 @@ function playGame() {
 		) {
 			console.log(`End of game, the winner is ${activePlayer.playerName}`);
 			result.textContent = `End of game, the winner is ${activePlayer.playerName}`;
+            cells.forEach(cell => {
+                cell.style.pointerEvents = "none";
+            })
 		} else if (board.getBoard.every(tie)) {
 			console.log("The game is a tie");
 			result.textContent = "The game is a tie";
+            cells.forEach(cell => {
+                cell.style.pointerEvents = "none";
+            })
 		}
 	};
 
@@ -99,7 +109,8 @@ function playGame() {
 	};
 
 	function updateBoard(board) {
-		const cells = document.querySelectorAll(".cell");
+        const cells = document.querySelectorAll(".cell");
+
 		cells.forEach((cell, index) => {
 			cell.addEventListener("click", () => {
 				playRound(index);
