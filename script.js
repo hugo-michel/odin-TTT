@@ -1,6 +1,27 @@
 const newGame = document.querySelector("#new-game");
 const result = document.querySelector("#result");
 
+const dialog = document.querySelector("dialog");
+const confirmBtn = document.querySelector("#confirm");
+const player1Input = document.querySelector("#player1");
+const player2Input = document.querySelector("#player2");
+
+let player1;
+let player2;
+
+confirmBtn.addEventListener("click", (event) => {
+	event.preventDefault();
+
+	let player1Name = player1Input.value;
+	let player2Name = player2Input.value;
+
+	player1 = createPlayer(`${player1Name}`, "O");
+	player2 = createPlayer(`${player2Name}`, "X");
+
+	dialog.close();
+	playGame(player1, player2);
+});
+
 function gameboard() {
 	let board = [];
 	for (i = 0; i < 9; i++) {
@@ -39,18 +60,14 @@ function createPlayer(name, token) {
 }
 
 newGame.addEventListener("click", () => {
-	playGame();
+	playGame(player1, player2);
 	result.textContent = "";
 });
 
-function playGame() {
-	const player1 = createPlayer("Player 1", "O");
-	const player2 = createPlayer("Player 2", "X");
+function playGame(player1, player2) {
 	const board = gameboard();
 
 	const currentPlayerDiv = document.querySelector("#current-player");
-
-
 
 	const tie = (item) => item !== "";
 
@@ -67,7 +84,7 @@ function playGame() {
 	};
 
 	const WinOrTie = () => {
-        const cells = document.querySelectorAll(".cell");
+		const cells = document.querySelectorAll(".cell");
 
 		if (
 			board.getBoard[0] + board.getBoard[1] + board.getBoard[2] === "OOO" ||
@@ -89,15 +106,15 @@ function playGame() {
 		) {
 			console.log(`End of game, the winner is ${activePlayer.playerName}`);
 			result.textContent = `End of game, the winner is ${activePlayer.playerName}`;
-            cells.forEach(cell => {
-                cell.style.pointerEvents = "none";
-            })
+			cells.forEach((cell) => {
+				cell.style.pointerEvents = "none";
+			});
 		} else if (board.getBoard.every(tie)) {
 			console.log("The game is a tie");
 			result.textContent = "The game is a tie";
-            cells.forEach(cell => {
-                cell.style.pointerEvents = "none";
-            })
+			cells.forEach((cell) => {
+				cell.style.pointerEvents = "none";
+			});
 		}
 	};
 
@@ -109,7 +126,7 @@ function playGame() {
 	};
 
 	function updateBoard(board) {
-        const cells = document.querySelectorAll(".cell");
+		const cells = document.querySelectorAll(".cell");
 
 		cells.forEach((cell, index) => {
 			cell.addEventListener("click", () => {
@@ -128,4 +145,4 @@ function playGame() {
 	return { player1, player2, board, switchTurn, playRound, activePlayer };
 }
 
-playGame();
+dialog.showModal();
