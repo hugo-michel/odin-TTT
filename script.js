@@ -69,6 +69,8 @@ function displayBoard(boardArray) {
 	for (i = 0; i < length; i++) {
 		let div = document.createElement("div");
 		div.classList.add("cell");
+		div.classList.add("invisible");
+
 		container.append(div);
 	}
 }
@@ -159,6 +161,7 @@ function playGame(player1, player2) {
 			cell.addEventListener("click", () => {
 				playRound(index);
 				cell.textContent = board[index];
+				cell.classList.remove("invisible")
 				cell.style.pointerEvents = "none";
                 if (activePlayer === player1) {
                    cell.style.color = clr1;

@@ -33,7 +33,7 @@ body {
 	width: 50%;
 	display: flex;
 	gap: 20px;
-    font-size: 20px;
+	font-size: 20px;
 }
 
 #players-display > div {
@@ -74,19 +74,19 @@ body {
 }
 
 #container > :nth-child(1):hover {
-    border-top-left-radius: 10px;
+	border-top-left-radius: 10px;
 }
 
 #container > :nth-child(3):hover {
-    border-top-right-radius: 10px;
+	border-top-right-radius: 10px;
 }
 
 #container > :nth-child(7):hover {
-    border-bottom-left-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 
 #container > :nth-child(9):hover {
-    border-bottom-right-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 .cell {
@@ -96,12 +96,11 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-    cursor: pointer;
-    
+	cursor: pointer;
 }
 
 .cell:hover {
-    background-color: #b7b3b3;
+	background-color: #b7b3b3;
 }
 
 /* modal */
@@ -117,14 +116,14 @@ dialog {
 }
 
 .dialog-restart > div {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
 }
 
 #result {
-    font-size: 30px;
+	font-size: 30px;
 }
 
 form {
@@ -134,9 +133,9 @@ form {
 }
 
 .form-element {
-    display:  flex;
-    align-items: center;
-    gap: 20px;
+	display: flex;
+	align-items: center;
+	gap: 20px;
 }
 
 input:invalid {
@@ -154,17 +153,17 @@ input {
 }
 
 button {
-    cursor: pointer;
+	cursor: pointer;
 	padding: 10px 15px;
 	border: none;
-    background-color: #dfdce1;
+	background-color: #dfdce1;
 	border-radius: 5px;
-    width: 100%;
+	width: 100%;
 }
 
 button:hover {
-    box-shadow: inset 0px 0px 47px 50px rgba(255, 255, 255, 0.5);  
-    outline: 1px solid black; 
+	box-shadow: inset 0px 0px 47px 50px rgba(255, 255, 255, 0.5);
+	outline: 1px solid black;
 }
 
 dialog::backdrop {
@@ -174,11 +173,11 @@ dialog::backdrop {
 /* css pr js */
 
 .currentPlayer1 {
-	outline:5px solid var(--clr2);
+	outline: 5px solid var(--clr2);
 }
 
 .currentPlayer2 {
-	outline:5px solid var(--clr1);
+	outline: 5px solid var(--clr1);
 }
 
 .clr1 {
@@ -192,19 +191,32 @@ dialog::backdrop {
 /* media queries */
 
 @media (max-width: 768px) {
+	#container {
+		width: 80%;
+	}
 
-    #container {
-        width: 80%;
-    }
-    
-    .cell {
-        font-size: 10vw;
-    }
+	.cell {
+		font-size: 10vw;
+	}
 }
 
 @media (max-width: 450px) {
+	#players-display {
+		width: 100%;
+	}
+}
 
-    #players-display {
-        width: 100%;
-    }
+/* animation */
+
+@keyframes apparition {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.invisible {
+	animation: apparition 1s ease-in-out;
 }
