@@ -7,6 +7,7 @@ const player1Input = document.querySelector("#player1");
 const player2Input = document.querySelector("#player2");
 
 const dialogRestart = document.querySelector(".dialog-restart");
+const newPlayersBtn = document.querySelector("#new-players");
 
 const player1Display = document.querySelector(".player1-display");
 const player2Display = document.querySelector(".player2-display");
@@ -17,12 +18,10 @@ const player2NameDisplay = document.querySelector(".player2-name-display");
 const player1ScoreDisplay = document.querySelector(".player1-score-display");
 const player2ScoreDisplay = document.querySelector(".player2-score-display");
 
-let player1;
-let player2;
-
 const clr1 = "#E0BC59";
 const clr2 = "#4C8EDF";
 
+//confirm names, start game
 confirmBtn.addEventListener("click", (event) => {
 	event.preventDefault();
 
@@ -30,17 +29,29 @@ confirmBtn.addEventListener("click", (event) => {
 	let player2Name = player2Input.value;
 
 	if (player1Name != "" && player2Name != "") {
-
 		player1 = createPlayer(`${player1Name}`, "O");
 		player2 = createPlayer(`${player2Name}`, "X");
-	
+
 		player1NameDisplay.textContent = `${player1.playerName} : O`;
 		player2NameDisplay.textContent = `${player2.playerName} : X`;
-	
+
+		player1ScoreDisplay.textContent = `Score : ${player1.getScore()}`;
+		player2ScoreDisplay.textContent = `Score : ${player2.getScore()}`;
+
+		player1Input.value = "";
+		player2Input.value = "";
+
 		dialogName.close();
 		playGame(player1, player2);
 	}
+});
 
+//new players name, reset class for highlight turn
+newPlayersBtn.addEventListener("click", () => {
+	dialogRestart.close();
+	player1Display.classList.add("currentPlayer1");
+	player2Display.classList.remove("currentPlayer2");
+	dialogName.showModal();
 });
 
 function gameboard() {
@@ -96,7 +107,7 @@ newGame.addEventListener("click", () => {
 
 function playGame(player1, player2) {
 	const board = gameboard();
-
+	//conditions if board is full, check with .every
 	const tie = (item) => item !== "";
 
 	let activePlayer = player1;
@@ -161,22 +172,19 @@ function playGame(player1, player2) {
 			cell.addEventListener("click", () => {
 				playRound(index);
 				cell.textContent = board[index];
-				cell.classList.remove("invisible")
+				cell.classList.remove("invisible");
 				cell.style.pointerEvents = "none";
-                if (activePlayer === player1) {
-                   cell.style.color = clr1;
-                } else if (activePlayer === player2) {
-                    cell.style.color = clr2;
-
-                }
+				if (activePlayer === player1) {
+					cell.style.color = clr1;
+				} else if (activePlayer === player2) {
+					cell.style.color = clr2;
+				}
 			});
 		});
 	}
 
 	displayBoard(board.getBoard);
 	updateBoard(board.getBoard);
-
-	return { player1, player2, board, switchTurn, playRound, activePlayer };
 }
 
 dialogName.showModal();
