@@ -15,6 +15,7 @@
 body {
 	height: 100dvh;
 	background-color: #dfdce1;
+	font-family: "Madimi One", sans-serif;
 }
 
 #main {
@@ -138,6 +139,10 @@ form {
 	gap: 20px;
 }
 
+label {
+	min-width: fit-content;
+}
+
 input:invalid {
 	border: 2px solid red;
 }
@@ -150,6 +155,7 @@ input {
 	border-radius: 5px;
 	padding: 5px;
 	border: none;
+	font-family: "Madimi One", sans-serif;
 }
 
 button {
@@ -159,6 +165,7 @@ button {
 	background-color: #dfdce1;
 	border-radius: 5px;
 	width: 100%;
+	font-family: "Madimi One", sans-serif;
 }
 
 button:hover {
