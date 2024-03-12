@@ -1,6 +1,4 @@
 # odin-TTT
 
-TODO : 
-
-Responsive  
+Project TicTacToe from The Odin Project.
 

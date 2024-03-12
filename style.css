@@ -206,6 +206,12 @@ dialog::backdrop {
 	}
 }
 
+@media (min-width: 1440px) {
+	#container {
+		width: 30%;
+	}
+}
+
 /* animation */
 
 @keyframes apparition {
