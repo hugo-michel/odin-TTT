@@ -12,19 +12,28 @@
             <h1><span class="clr1">Tic</span> Tac <span class="clr2">Toe</span></h1>
 
             <dialog class="dialog-restart">
-                <div id="result" class="hide"></div>
-                <button id="new-game">New Game</button>
+                <div>
+                    <div id="result" class="hide"></div>
+                    <button id="new-game">New Game</button>
+                </div>
             </dialog>
+
             <div id="container"></div>
+
             <dialog class="input-name">
                 <form action="">
-                    <label for="player1">nom du joueur 1</label>
-                    <input type="text" id="player1" name="player1" />
-                    <label for="player2">nom du joueur 1</label>
-                    <input type="text" id="player2" name="player2" />
+                    <div class="form-element">
+                        <label for="player1">nom du joueur 1</label>
+                        <input type="text" id="player1" name="player1" />
+                    </div>
+                    <div class="form-element">
+                        <label for="player2">nom du joueur 2</label>
+                        <input type="text" id="player2" name="player2" />
+                    </div>
                     <button id="confirm">Confirm</button>
                 </form>
             </dialog>
+
             <div id="players-display">
                 <div class="player1-display currentPlayer1">
                     <p class="player1-name-display"></p>
