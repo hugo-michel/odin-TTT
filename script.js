@@ -34,8 +34,8 @@ confirmBtn.addEventListener("click", (event) => {
 		player1 = createPlayer(`${player1Name}`, "O");
 		player2 = createPlayer(`${player2Name}`, "X");
 	
-		player1NameDisplay.textContent = `${player1.playerName} O`;
-		player2NameDisplay.textContent = `${player2.playerName} X`;
+		player1NameDisplay.textContent = `${player1.playerName} : O`;
+		player2NameDisplay.textContent = `${player2.playerName} : X`;
 	
 		dialogName.close();
 		playGame(player1, player2);
@@ -126,7 +126,6 @@ function playGame(player1, player2) {
 			board.getBoard[2] + board.getBoard[4] + board.getBoard[6] === "OOO" ||
 			board.getBoard[2] + board.getBoard[4] + board.getBoard[6] === "XXX"
 		) {
-			console.log(`End of game, the winner is ${activePlayer.playerName}`);
 			result.textContent = `${activePlayer.playerName} Win !`;
 			dialogRestart.showModal();
 			activePlayer.addScore();

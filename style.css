@@ -86,7 +86,7 @@ body {
 }
 
 #container > :nth-child(9):hover {
-    border-border-color-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .cell {
@@ -187,4 +187,24 @@ dialog::backdrop {
 
 .clr2 {
 	color: var(--clr1);
+}
+
+/* media queries */
+
+@media (max-width: 768px) {
+
+    #container {
+        width: 80%;
+    }
+    
+    .cell {
+        font-size: 10vw;
+    }
+}
+
+@media (max-width: 450px) {
+
+    #players-display {
+        width: 100%;
+    }
 }
