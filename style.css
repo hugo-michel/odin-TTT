@@ -33,6 +33,7 @@ body {
 	width: 50%;
 	display: flex;
 	gap: 20px;
+    font-size: 20px;
 }
 
 #players-display > div {
@@ -85,7 +86,7 @@ body {
 }
 
 #container > :nth-child(9):hover {
-    border-bottom-right-radius: 10px;
+    border-border-color-radius: 10px;
 }
 
 .cell {
@@ -173,11 +174,11 @@ dialog::backdrop {
 /* css pr js */
 
 .currentPlayer1 {
-	background-color: var(--clr2);
+	outline:5px solid var(--clr2);
 }
 
 .currentPlayer2 {
-	background-color: var(--clr1);
+	outline:5px solid var(--clr1);
 }
 
 .clr1 {

@@ -29,14 +29,18 @@ confirmBtn.addEventListener("click", (event) => {
 	let player1Name = player1Input.value;
 	let player2Name = player2Input.value;
 
-	player1 = createPlayer(`${player1Name}`, "O");
-	player2 = createPlayer(`${player2Name}`, "X");
+	if (player1Name != "" && player2Name != "") {
 
-	player1NameDisplay.textContent = `${player1.playerName} O`;
-	player2NameDisplay.textContent = `${player2.playerName} X`;
+		player1 = createPlayer(`${player1Name}`, "O");
+		player2 = createPlayer(`${player2Name}`, "X");
+	
+		player1NameDisplay.textContent = `${player1.playerName} O`;
+		player2NameDisplay.textContent = `${player2.playerName} X`;
+	
+		dialogName.close();
+		playGame(player1, player2);
+	}
 
-	dialogName.close();
-	playGame(player1, player2);
 });
 
 function gameboard() {
