@@ -143,7 +143,7 @@ input:invalid {
 }
 
 input:valid {
-	border: 2px solid green;
+	border: 2px solid rgb(8, 211, 8);
 }
 
 input {
@@ -168,6 +168,19 @@ button:hover {
 
 dialog::backdrop {
 	backdrop-filter: blur(2px);
+}
+
+input + span {
+	position: relative;
+}
+
+input:invalid + span::after {
+	content: "*";
+	color: red;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	font-size: 15px;
 }
 
 /* css pr js */
