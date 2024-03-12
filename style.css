@@ -72,6 +72,22 @@ body {
 	border: var(--border);
 }
 
+#container > :nth-child(1):hover {
+    border-top-left-radius: 10px;
+}
+
+#container > :nth-child(3):hover {
+    border-top-right-radius: 10px;
+}
+
+#container > :nth-child(7):hover {
+    border-bottom-left-radius: 10px;
+}
+
+#container > :nth-child(9):hover {
+    border-bottom-right-radius: 10px;
+}
+
 .cell {
 	font-size: 5vw;
 	width: 33%;
@@ -79,6 +95,12 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+    cursor: pointer;
+    
+}
+
+.cell:hover {
+    background-color: #b7b3b3;
 }
 
 /* modal */
@@ -94,9 +116,14 @@ dialog {
 }
 
 .dialog-restart > div {
+    text-align: center;
     display: flex;
     flex-direction: column;
     gap: 50px;
+}
+
+#result {
+    font-size: 30px;
 }
 
 form {

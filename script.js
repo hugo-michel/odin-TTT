@@ -123,7 +123,7 @@ function playGame(player1, player2) {
 			board.getBoard[2] + board.getBoard[4] + board.getBoard[6] === "XXX"
 		) {
 			console.log(`End of game, the winner is ${activePlayer.playerName}`);
-			result.textContent = `End of game, the winner is ${activePlayer.playerName}`;
+			result.textContent = `${activePlayer.playerName} Win !`;
 			dialogRestart.showModal();
 			activePlayer.addScore();
 			if (activePlayer === player1) {
